@@ -27,3 +27,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_I2C
 
 #define TAPPING_TOGGLE 2
+#define LEADER_TIMEOUT 300

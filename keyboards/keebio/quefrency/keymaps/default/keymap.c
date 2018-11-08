@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MAC] = LAYOUT(
     KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,  KC_EQL,  _______, KC_BSPC, \
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC, KC_BSLS, \
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  KC_ENT, \
+    KC_LEAD, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  KC_ENT, \
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,  KC_PGUP, \
     KC_LCTL, KC_LALT, KC_LGUI, KC_SPC,  TT(_FNM),          KC_SPC,  TT(_FNM),KC_RALT, KC_RGUI, KC_LCTL, TT(_FNM), KC_PGDN
   ),
@@ -71,3 +71,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______,  KC_END
   )
 };
+
+LEADER_EXTERNS();
+
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+
+    // Tmux: create new window
+    SEQ_ONE_KEY(KC_C) { SEND_STRING(SS_LCTRL("b")"c"); }
+
+    // Tmux: next window
+    SEQ_ONE_KEY(KC_N) { SEND_STRING(SS_LCTRL("b")"n"); }
+
+    // Tmux: previous window
+    SEQ_ONE_KEY(KC_P) { SEND_STRING(SS_LCTRL("b")"p"); }
+
+    // Tmux: new vertical pane
+    SEQ_ONE_KEY(KC_V) { SEND_STRING(SS_LCTRL("b")"%"); }
+
+    // Tmux: new horizontal pane
+    SEQ_ONE_KEY(KC_X) { SEND_STRING(SS_LCTRL("b")"\""); }
+
+    // Tmux: pane navigation
+    SEQ_ONE_KEY(KC_H) { SEND_STRING(SS_LCTRL("b")SS_TAP(X_LEFT)); }
+    SEQ_ONE_KEY(KC_J) { SEND_STRING(SS_LCTRL("b")SS_TAP(X_DOWN)); }
+    SEQ_ONE_KEY(KC_K) { SEND_STRING(SS_LCTRL("b")SS_TAP(X_UP)); }
+    SEQ_ONE_KEY(KC_L) { SEND_STRING(SS_LCTRL("b")SS_TAP(X_RIGHT)); }
+
+    // Tmux: pane rotation
+    SEQ_ONE_KEY(KC_SPC) { SEND_STRING(SS_LCTRL("b")SS_TAP(X_SPACE)); }
+  }
+}
