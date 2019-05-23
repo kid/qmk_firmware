@@ -21,6 +21,7 @@ enum custom_keycodes {
 #define XXXXXXX KC_NO
 
 #define TM_PREF LCTL(KC_B)
+#define FZF_CD  LALT(KC_C)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
@@ -45,14 +46,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC, KC_BSLS, \
     TM_PREF, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  KC_ENT, \
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,  KC_PGUP, \
-    KC_LCTL, KC_LALT, KC_LGUI, KC_SPC,  MO(_FNM),          KC_SPC,  TT(_FNM),KC_RGUI, KC_RALT, KC_LCTL, MO(_FNM), KC_PGDN
+    KC_LCTL, KC_LALT, KC_LGUI, KC_SPC,  MO(_FNM),          KC_SPC,  TT(_FNM),KC_RALT, KC_RGUI, KC_LCTL, MO(_FNM), KC_PGDN
   ),
 
   [_FNM] = LAYOUT(
     KC_GRAVE,KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,   KC_F12,  _______,  KC_DELETE, \
     RGB_TOG, RGB_MOD, KC_UP,   _______, _______, _______,  _______, _______, _______, _______, KC_MRWD, KC__VOLDOWN,KC__VOLUP, KC__MUTE, \
     _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, DF(_GAME),KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,  KC_INS, \
-    _______, _______, _______, _______, _______, DF(_BASE),KC_MFFD, DF(_MAC),_______, _______, _______, _______,  KC_HOME, \
+    _______, _______, _______, FZF_CD , _______, DF(_BASE),KC_MFFD, DF(_MAC),_______, _______, _______, _______,  KC_HOME, \
     KC_TILD, _______, _______, KC_MPLY, _______,           KC_MPLY, _______, _______, _______, _______, _______,  KC_END
   ),
 
